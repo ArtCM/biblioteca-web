@@ -17,6 +17,7 @@
     --secondary: #991818;
     --terciary: #3B3737;
     --quarternary: #666666;
+    --off-white:  #fef7ff;
     --text-dark: #3B3737;
     --text-white: #e5e5e6;
     --button-green: #4CAF50;
@@ -30,12 +31,16 @@
     color: var(--text-white);
   }
 
+  a{
+    text-decoration: none;
+  }
+
   /* Containers */
 .container {
     width: 100%;
     max-width: 500px; 
     margin: 0 auto;
-    padding: 16px;
+    padding: 10px;
     box-sizing: border-box;
   }
   
@@ -43,14 +48,14 @@
   /* Ajusta o espaçamento para tablets */
   @media (min-width: 768px) {
       .container {
-          padding: 24px;
+          padding: 14px;
           max-width: 900px;
         }
     }
     
 @media (min-width: 1024px) {
     .container {
-        padding: 32px;
+        padding: 10px 32px;
         max-width: 1200px;
     }
 }

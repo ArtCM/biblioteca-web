@@ -1,0 +1,123 @@
+.header{
+    background-color: var(--secondary);
+    width: screen;
+}
+
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.navbar__logo{
+    width: 70px;
+    height: 70px;
+}
+
+/* Mobile First*/
+.navbar__mobile .menuButton{
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all ease-in-out 0.3s;
+    z-index: 20;
+    position: relative;
+}
+
+.navbar__mobile .menuButton.select{
+    background-color: var(--terciary);
+}
+
+.navbar__mobile .menuButton.select svg{
+    fill: white;
+}
+
+.navbar__mobile .menuButton:hover{
+    filter: brightness(0.9);
+    transform: scale(0.9);
+}
+
+.navbar__mobile svg{
+    width:30px;
+    height:30px;
+}
+
+.navbar__mobile--menu{
+    height: 100%;
+    width: 100%;
+    background-color: var(--off-white);
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 19;
+    transition: all ease-in-out 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+    gap: 10px;
+}
+
+.navbar__mobile--menu ul{
+    padding-left: 0;
+    list-style: none;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    min-width: 250px;
+}
+
+.navbar__mobile--menu ul a{
+    color: var(--text-dark);
+    font-size: 20px;
+    padding: 5px 15px;
+    transition: all ease-in-out 0.3s;
+}
+
+.navbar__mobile--menu ul a:hover{
+    filter: brightness(0.3);
+    transform: scale(0.95);
+}
+
+.navbar__mobile--menu ul li{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.navbar__mobile--menu ul li svg{
+    fill: var(--terciary);
+    height: 20px;
+    width: 20px;
+}
+
+.navbar__mobile--menu.menuClose{
+    right: -100%;
+}
+
+.navbar__mobile--menu>.menuOpen{
+    right: 100%;
+}
+
+/* Desktop */
+@media(min-width:768px){
+    .navbar__mobile{
+        display: none;
+    }
+
+    
+}
+@media(max-width:768px){
+    .navbar__desktop{
+        display: none;
+    }
+}
