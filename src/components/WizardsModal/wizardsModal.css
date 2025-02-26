@@ -1,5 +1,5 @@
 .modal-overlay {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -10,7 +10,6 @@
     justify-content: center;
   }
   
-  /* Conteúdo do modal */
   .modal-content {
     background: white;
     padding: 20px;
@@ -18,10 +17,12 @@
     width: 100%;
     max-width: 500px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 60;
+    position: relative;
     animation: fadeIn 0.3s ease-out;
+    color: var(--text-dark);
   }
   
-  /* Animação de entrada */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -33,7 +34,6 @@
     }
   }
   
-  /* Indicador de steps */
   .step-indicator {
     display: flex;
     gap: 8px;
@@ -49,10 +49,9 @@
   }
   
   .step-indicator .active-step {
-    background: #007bff;
+    background: var(--primary);
   }
   
-  /* Formulário */
   .form-group {
     display: flex;
     flex-direction: column;
@@ -71,16 +70,31 @@
     font-size: 16px;
   }
   
-  /* Botões do modal */
+
   .modal-footer {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
   }
+
+  .closeBtn{
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+  }
+
+  .closeBtn svg{
+    height: 30px;
+    width: 30px;
+    fill: red;
+  }
   
   .modal-footer button {
-    background: #007bff;
-    color: white;
+    background: var(--primary);
+    color: var(--text-dark);
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
@@ -89,5 +103,10 @@
   }
   
   .modal-footer button:hover {
-    background: #0056b3;
+    filter: brightness(0.9);
+  }
+
+  .closeBtn:hover svg{
+    filter: brightness(0.9);
+    transform: scale(0.95);
   }

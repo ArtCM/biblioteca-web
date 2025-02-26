@@ -5,14 +5,18 @@ import { useState } from "react";
 import './header.css'
 import MobAddButton from "../MobAddbutton/mobAddButton";
 import DeskAddButton from "../DeskAddButton/deskAddButton";
-import { AddEntityModal } from "../AddEntityModal/addEntityModal";
+
+import { useEntityModal } from "../../hooks/useEntityModal";
 
 export default function Header() {
 
     // State que abre o menu mobile
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const [counter, setCounter] = useState(0);
+    const bookModal = useEntityModal("book");
+    const authorModal = useEntityModal("author");
+    const categoryModal = useEntityModal("category");
+    
     return(
         <header className="header">
 
@@ -68,24 +72,22 @@ export default function Header() {
                             </ul>
 
                             <MobAddButton
-                                onClick={() => setCounter(counter + 1)}
+                                onClick={bookModal.openModal}
                                 buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
                                 buttonText="Adicionar Livro"
                             />
 
                             <MobAddButton
-                                onClick={() => setCounter(counter + 1)}
+                                onClick={authorModal.openModal}
                                 buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
                                 buttonText="Adicionar Autor"
                             />
 
                             <MobAddButton
-                                onClick={() => setCounter(counter + 1)}
+                                onClick={categoryModal.openModal}
                                 buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
                                 buttonText="Adicionar Categoria"
                             />
-
-                            <p>{counter}</p>
 
                             <a className="adminMobButton" href="#">
                                 Acessar Como Admin
@@ -138,17 +140,17 @@ export default function Header() {
                                 {/* Add Dropdwon */}
                                 <div className="addDropdown__container fadeFromTop">
                                     <DeskAddButton 
-                                        onClick={() => setCounter(counter + 1)}
+                                        onClick={bookModal.openModal}
                                         buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
                                         buttonText="Livro"
                                     />
                                     <DeskAddButton 
-                                        onClick={() => setCounter(counter + 1)}
+                                        onClick={authorModal.openModal}
                                         buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
                                         buttonText="Autor"
                                     />
                                     <DeskAddButton 
-                                        onClick={() => setCounter(counter + 1)}
+                                        onClick={categoryModal.openModal}
                                         buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
                                         buttonText="Categoria"
                                     />
@@ -168,14 +170,9 @@ export default function Header() {
                     </div>
                 </nav>
 
-                {/* Livros Modal */}
-                <AddEntityModal entityType="book" />
-
-                {/* Autor Modal */}
-                <AddEntityModal entityType="author" />
-
-                {/* Categoria Modal */}
-                <AddEntityModal entityType="category" />
+                {bookModal.modal}
+                {authorModal.modal}
+                {categoryModal.modal}
             </div>
 
         </header>

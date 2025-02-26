@@ -149,7 +149,7 @@
     background-color: var(--primary);
     padding: 8px 10px;
     border-radius: 10px;
-    color: var(--text-white);
+    color: var(--text-dark);
 }
 
 .addDropdown{
