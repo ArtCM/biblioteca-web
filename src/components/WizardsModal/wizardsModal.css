@@ -110,3 +110,10 @@
     filter: brightness(0.9);
     transform: scale(0.95);
   }
+
+
+  @media(min-width:900px){
+    .modal-overlay{
+        position: fixed;
+    }
+  }
