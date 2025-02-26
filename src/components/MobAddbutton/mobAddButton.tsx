@@ -1,9 +1,9 @@
 
 import './mobAddButton.css'
 
-import { MobAddButtonProps } from "../../types/AddButtons";
+import { AddButtonProps } from "../../types/AddButtons";
 
-export default function MobAddButton({ buttonText, buttonIcon, onClick }: MobAddButtonProps) {
+export default function MobAddButton({ buttonText, buttonIcon, onClick }: AddButtonProps) {
 
     return(
         <button className='mobAddButton' onClick={onClick}>
@@ -11,4 +11,4 @@ export default function MobAddButton({ buttonText, buttonIcon, onClick }: MobAdd
             {buttonText}
         </button>
     )
-}
+} 

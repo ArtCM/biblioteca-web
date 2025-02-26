@@ -45,7 +45,7 @@
   }
   
   
-  /* Ajusta o espaçamento para tablets */
+  /* Breakpoints */
   @media (min-width: 768px) {
       .container {
           padding: 14px;
@@ -65,3 +65,4 @@
     max-width: 1500px;
     }
 }
+

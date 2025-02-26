@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import './header.css'
 import MobAddButton from "../MobAddbutton/mobAddButton";
+import DeskAddButton from "../DeskAddButton/deskAddButton";
+import { AddEntityModal } from "../AddEntityModal/addEntityModal";
 
 export default function Header() {
 
@@ -84,6 +86,10 @@ export default function Header() {
                             />
 
                             <p>{counter}</p>
+
+                            <a className="adminMobButton" href="#">
+                                Acessar Como Admin
+                            </a>
                         </div>
                     </div>
                     
@@ -98,27 +104,78 @@ export default function Header() {
                             </a>
                             <a href="#">
                                 <li>
-                                    Sobre
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li>
-                                    Categorias
-                                </li>
-                            </a>
-                            <a href="#">
-                                <li>
                                     Autores
                                 </li>
                             </a>
+                            <div className="categoryDropdown">
+                                <a href="#">
+                                    <li>
+                                        Categorias
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
+                                    </li>
+                                </a>
+
+                                {/* Category Dropdown */}
+                                {/* <div className="categoryDropdown__container fadeFromTop">
+                                    <div>
+                                        <p>Nenhuma Categoria Adicionada</p>
+                                    </div>
+
+                                    <div>
+
+                                    </div>
+                                </div> */}
+                            </div>
+
+                            <div className="addDropdown">
+                                <a href="#">
+                                    <li>
+                                        Adicionar
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
+                                    </li>
+                                </a>
+
+                                {/* Add Dropdwon */}
+                                <div className="addDropdown__container fadeFromTop">
+                                    <DeskAddButton 
+                                        onClick={() => setCounter(counter + 1)}
+                                        buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
+                                        buttonText="Livro"
+                                    />
+                                    <DeskAddButton 
+                                        onClick={() => setCounter(counter + 1)}
+                                        buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
+                                        buttonText="Autor"
+                                    />
+                                    <DeskAddButton 
+                                        onClick={() => setCounter(counter + 1)}
+                                        buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
+                                        buttonText="Categoria"
+                                    />
+                                </div>
+                            </div>
+
                             <a href="#">
                                 <li>
-                                    Favoritos
+                                    Sobre
                                 </li>
+                            </a>
+
+                            <a className="adminDeskButton" href="#">
+                                Acessar Como Admin
                             </a>
                         </ul>
                     </div>
                 </nav>
+
+                {/* Livros Modal */}
+                <AddEntityModal entityType="book" />
+
+                {/* Autor Modal */}
+                <AddEntityModal entityType="author" />
+
+                {/* Categoria Modal */}
+                <AddEntityModal entityType="category" />
             </div>
 
         </header>

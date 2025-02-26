@@ -59,9 +59,8 @@
     transition: all ease-in-out 0.3s;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
-    padding-top: 50px;
     gap: 10px;
 }
 
@@ -100,6 +99,10 @@
     width: 20px;
 }
 
+.navbar__mobile--menu .adminMobButton{
+    color: var(--quarternary);
+}
+
 .navbar__mobile--menu.menuClose{
     right: -100%;
 }
@@ -109,14 +112,88 @@
 }
 
 /* Desktop */
-@media(min-width:768px){
-    .navbar__mobile{
+.navbar__desktop ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: 25px;
+}
+
+.navbar__desktop ul a{
+    color: var(--text-white);
+    font-weight: 700;
+    transition: all ease-in-out 0.3s;
+    font-size: 18px;
+}
+
+.navbar__desktop ul a:hover{
+    filter: brightness(0.8);
+    transform: scale(0.95);
+}
+
+.navbar__desktop a li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.navbar__desktop a li svg{
+    height: 20px;
+    width: 20px;
+    fill: var(--off-white);
+}
+
+.navbar__desktop .adminDeskButton{
+    background-color: var(--primary);
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: var(--text-white);
+}
+
+.addDropdown{
+    position: relative;
+}
+
+.addDropdown__container{
+    position: absolute;
+    top: 28px;
+    left: -50%;
+    border-radius: 10px;
+    min-width: 100px;
+    min-height: 100px;
+    background-color: var(--off-white);
+    padding: 18px 15px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Efeito de fade */
+.fadeFromTop{
+    transition: all ease-in-out 0.3s;
+    transform: translateY(-10px);
+    pointer-events: none;
+    opacity: 0;
+  }
+  
+  .addDropdown:focus-within .fadeFromTop, .addDropdown:hover .fadeFromTop{
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+@media(min-width:900px){
+    :where(.navbar__mobile--menu, .navbar__mobile){
         display: none;
     }
 
-    
+
 }
-@media(max-width:768px){
+@media(max-width:900px){
     .navbar__desktop{
         display: none;
     }
