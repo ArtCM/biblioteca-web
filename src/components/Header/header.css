@@ -61,7 +61,6 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    gap: 10px;
 }
 
 .navbar__mobile--menu ul{
@@ -101,6 +100,26 @@
 
 .navbar__mobile--menu .adminMobButton{
     color: var(--quarternary);
+    font-weight: 700;
+    transition: all ease-in-out 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.navbar__mobile--menu .adminMobButton svg{
+    fill: var(--text-dark);
+    transition: all ease-in-out 0.3s;
+}
+
+.navbar__mobile--menu .adminMobButton:hover{
+    color: var(--primary);
+}
+
+.navbar__mobile--menu .adminMobButton:hover svg{
+    fill: var(--primary);
 }
 
 .navbar__mobile--menu.menuClose{
@@ -150,6 +169,7 @@
     padding: 8px 10px;
     border-radius: 10px;
     color: var(--text-dark);
+    cursor: pointer;
 }
 
 .addDropdown{

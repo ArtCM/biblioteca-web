@@ -16,6 +16,12 @@ export default function Header() {
     const bookModal = useEntityModal("book");
     const authorModal = useEntityModal("author");
     const categoryModal = useEntityModal("category");
+
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    const toggleAdmin = () => {
+        setIsAdmin((prev) => !prev);
+    };
     
     return(
         <header className="header">
@@ -71,27 +77,18 @@ export default function Header() {
                                 </a>
                             </ul>
 
-                            <MobAddButton
-                                onClick={bookModal.openModal}
-                                buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
-                                buttonText="Adicionar Livro"
-                            />
-
-                            <MobAddButton
-                                onClick={authorModal.openModal}
-                                buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
-                                buttonText="Adicionar Autor"
-                            />
-
-                            <MobAddButton
-                                onClick={categoryModal.openModal}
-                                buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
-                                buttonText="Adicionar Categoria"
-                            />
-
-                            <a className="adminMobButton" href="#">
-                                Acessar Como Admin
+                            <a className="adminMobButton" onClick={toggleAdmin}>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 128a128 128 0 1 0 256 0A128 128 0 1 0 96 128zm94.5 200.2l18.6 31L175.8 483.1l-36-146.9c-2-8.1-9.8-13.4-17.9-11.3C51.9 342.4 0 405.8 0 481.3c0 17 13.8 30.7 30.7 30.7l131.7 0c0 0 0 0 .1 0l5.5 0 112 0 5.5 0c0 0 0 0 .1 0l131.7 0c17 0 30.7-13.8 30.7-30.7c0-75.5-51.9-138.9-121.9-156.4c-8.1-2-15.9 3.3-17.9 11.3l-36 146.9L238.9 359.2l18.6-31c6.4-10.7-1.3-24.2-13.7-24.2L224 304l-19.7 0c-12.4 0-20.1 13.6-13.7 24.2z"/></svg>
+                                {isAdmin ? "Voltar Como User" : "Acessar Como Admin"}
                             </a>
+
+                            {isAdmin && (
+                                <>
+                                <MobAddButton onClick={bookModal.openModal} buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32v144H48c-17.7 0-32 14.3-32 32s14.3 32 32 32h144v144c0 17.7 14.3 32 32 32s32-14.3 32-32V288h144c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>} buttonText="Adicionar Livro" />
+                                <MobAddButton onClick={authorModal.openModal} buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32v144H48c-17.7 0-32 14.3-32 32s14.3 32 32 32h144v144c0 17.7 14.3 32 32 32s32-14.3 32-32V288h144c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>} buttonText="Adicionar Autor" />
+                                <MobAddButton onClick={categoryModal.openModal} buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32v144H48c-17.7 0-32 14.3-32 32s14.3 32 32 32h144v144c0 17.7 14.3 32 32 32s32-14.3 32-32V288h144c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>} buttonText="Adicionar Categoria" />
+                                </>
+                            )}
                         </div>
                     </div>
                     
@@ -129,33 +126,35 @@ export default function Header() {
                                 </div> */}
                             </div>
 
-                            <div className="addDropdown">
-                                <a href="#">
-                                    <li>
-                                        Adicionar
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
-                                    </li>
-                                </a>
+                            {isAdmin && (
+                                <div className="addDropdown">
+                                    <a href="#">
+                                        <li>
+                                            Adicionar
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
+                                        </li>
+                                    </a>
 
-                                {/* Add Dropdwon */}
-                                <div className="addDropdown__container fadeFromTop">
-                                    <DeskAddButton 
-                                        onClick={bookModal.openModal}
-                                        buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
-                                        buttonText="Livro"
-                                    />
-                                    <DeskAddButton 
-                                        onClick={authorModal.openModal}
-                                        buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
-                                        buttonText="Autor"
-                                    />
-                                    <DeskAddButton 
-                                        onClick={categoryModal.openModal}
-                                        buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
-                                        buttonText="Categoria"
-                                    />
+                                    {/* Add Dropdwon */}
+                                    <div className="addDropdown__container fadeFromTop">
+                                        <DeskAddButton 
+                                            onClick={bookModal.openModal}
+                                            buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
+                                            buttonText="Livro"
+                                        />
+                                        <DeskAddButton 
+                                            onClick={authorModal.openModal}
+                                            buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
+                                            buttonText="Autor"
+                                        />
+                                        <DeskAddButton 
+                                            onClick={categoryModal.openModal}
+                                            buttonIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"/></svg>}
+                                            buttonText="Categoria"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
                             <a href="#">
                                 <li>
@@ -163,8 +162,8 @@ export default function Header() {
                                 </li>
                             </a>
 
-                            <a className="adminDeskButton" href="#">
-                                Acessar Como Admin
+                            <a className="adminDeskButton" onClick={toggleAdmin}>
+                                {isAdmin ? "Voltar Como User" : "Acessar Como Admin"}
                             </a>
                         </ul>
                     </div>
