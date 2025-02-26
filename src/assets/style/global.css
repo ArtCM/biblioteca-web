@@ -1,41 +1,48 @@
 @font-face {
-    font-family: "Montserrat";
-    src: url("../../../public/assets/font/Montserrat-VariableFont_wght.ttf") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-  }
+  font-family: "Montserrat";
+  src: url("../../../public/assets/font/Montserrat-VariableFont_wght.ttf") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
 
 
 :root {
-    font-family: var(--font-primary), Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
-  
-  
-    --font-primary: 'Montserrat';
-    --primary: #E19F41;
-    --secondary: #991818;
-    --terciary: #3B3737;
-    --quarternary: #666666;
-    --off-white:  #fef7ff;
-    --text-dark: #3B3737;
-    --text-white: #e5e5e6;
-    --button-green: #4CAF50;
-    --button-red: #c90f0f;
-  }
+  font-family: var(--font-primary), Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-  body{
-    scroll-behavior: smooth;
-    background-color: var(--terciary);
 
-    color: var(--text-white);
-  }
+  --font-primary: 'Montserrat';
+  --primary: #E19F41;
+  --secondary: #991818;
+  --terciary: #3B3737;
+  --quarternary: #666666;
+  --off-white:  #fef7ff;
+  --text-dark: #3B3737;
+  --text-white: #e5e5e6;
+  --button-green: #4CAF50;
+  --button-red: #c90f0f;
+}
 
-  a{
-    text-decoration: none;
-  }
+body{
+  scroll-behavior: smooth;
+  background-color: var(--terciary);
 
-  /* Containers */
+  color: var(--text-white);
+}
+
+a{
+  text-decoration: none;
+}
+
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100dvh - 312px);
+}
+
+/* Containers */
 .container {
     width: 100%;
     max-width: 500px; 
