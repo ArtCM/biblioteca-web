@@ -80,6 +80,7 @@
     font-size: 20px;
     padding: 5px 15px;
     transition: all ease-in-out 0.3s;
+    cursor: pointer;
 }
 
 .navbar__mobile--menu ul a:hover{
@@ -146,6 +147,7 @@
     font-weight: 700;
     transition: all ease-in-out 0.3s;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .navbar__desktop ul a:hover{

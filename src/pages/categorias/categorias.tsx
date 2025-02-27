@@ -5,8 +5,15 @@ export default function Categories() {
   const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
-    const storedCategories = JSON.parse(localStorage.getItem("categories") || "[]");
-    setCategories(storedCategories.map((cat: { name: string }) => cat.name));
+    const fetchCategories = () => {
+      const storedCategories = JSON.parse(localStorage.getItem("categories") || "[]");
+      setCategories(storedCategories.map((cat: { name: string }) => cat.name));
+    };
+
+    fetchCategories();
+
+    window.addEventListener("localStorageUpdate", fetchCategories);
+    return () => window.removeEventListener("localStorageUpdate", fetchCategories);
   }, []);
 
   return (

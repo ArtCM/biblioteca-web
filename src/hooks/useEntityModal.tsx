@@ -43,8 +43,11 @@ export function useEntityModal(entityType: EntityType) {
     ],
   };
 
-  const handleSubmit = (data: FieldValues, resetForm: UseFormReset<FieldValues>) => {
+  const triggerUpdate = () => {
+    window.dispatchEvent(new Event("localStorageUpdate")); // ✅ Dispara evento para atualização
+  };
 
+  const handleSubmit = (data: FieldValues, resetForm: UseFormReset<FieldValues>) => {
     if (entityType === "book") {
       const newBook: Book = { 
         title: data.title.trim(),
@@ -57,7 +60,6 @@ export function useEntityModal(entityType: EntityType) {
         color: data.color 
       };
 
-      // Verifica se o livro já existe antes de adicionar
       if (books.some(book => book.title.toLowerCase() === newBook.title.toLowerCase())) {
         alert("Livro já existe! Nenhuma adição feita.");
         setIsOpen(false);
@@ -65,17 +67,17 @@ export function useEntityModal(entityType: EntityType) {
       }
 
       setBooks(prevBooks => [...prevBooks, newBook]);
+      triggerUpdate(); // ✅ Atualiza a listagem imediatamente
 
-      // Verifica se o autor já existe antes de adicionar
       if (!authors.some(author => author.name.toLowerCase() === newBook.author.toLowerCase())) {
         setAuthors(prevAuthors => [...prevAuthors, { name: newBook.author, age: 0, gender: "outro", nationality: "" }]);
+        triggerUpdate();
       }
 
-      // Verifica se a categoria já existe antes de adicionar
       if (!categories.some(category => category.name.toLowerCase() === newBook.genre.toLowerCase())) {
         setCategories(prevCategories => [...prevCategories, { name: newBook.genre }]);
+        triggerUpdate();
       }
-
     }
 
     if (entityType === "author") {
@@ -86,20 +88,19 @@ export function useEntityModal(entityType: EntityType) {
         nationality: data.nationality.trim()
       };
 
-      // Verifica se o autor já existe antes de adicionar
       if (!authors.some(author => author.name.toLowerCase() === newAuthor.name.toLowerCase())) {
         setAuthors(prevAuthors => [...prevAuthors, newAuthor]);
+        triggerUpdate();
       }
     }
 
     if (entityType === "category") {
       const newCategory: Category = { name: data.name.trim() };
 
-      // Verifica se a categoria já existe antes de adicionar
       if (!categories.some(category => category.name.toLowerCase() === newCategory.name.toLowerCase())) {
         setCategories(prevCategories => [...prevCategories, newCategory]);
+        triggerUpdate();
       }
-
     }
 
     setIsOpen(false);
