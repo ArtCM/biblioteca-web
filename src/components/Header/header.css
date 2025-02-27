@@ -184,8 +184,8 @@
     top: 28px;
     left: -50%;
     border-radius: 10px;
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 200px;
+    min-height: 150px;
     background-color: var(--off-white);
     padding: 18px 15px;
     gap: 10px;
@@ -193,6 +193,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.categoryDropdown{
+    color: var(--text-dark);
+}
+
+.categoryDropdown__container ul{
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Efeito de fade */

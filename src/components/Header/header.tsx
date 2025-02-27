@@ -8,7 +8,11 @@ import DeskAddButton from "../DeskAddButton/deskAddButton";
 
 import { useEntityModal } from "../../hooks/useEntityModal";
 
-export default function Header() {
+interface HeaderProps {
+    navigateTo: (path: string) => void;
+}
+
+export default function Header({ navigateTo }: HeaderProps) {
 
     // State que abre o menu mobile
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -45,19 +49,19 @@ export default function Header() {
                         {/* Menu Lateral */}
                         <div className={`navbar__mobile--menu ${isMobileMenuOpen ? "menuOpen" : "menuClose"}`}>
                             <ul>
-                                <a href="#">
+                                <a onClick={() => navigateTo("/livros")}>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M96 0C43 0 0 43 0 96L0 416c0 53 43 96 96 96l288 0 32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l0-64c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L384 0 96 0zm0 384l256 0 0 64L96 448c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16l192 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-192 0c-8.8 0-16-7.2-16-16zm16 48l192 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-192 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
                                         Livros
                                     </li>
                                 </a>
-                                <a href="#">
+                                <a onClick={() => navigateTo("/autores")}>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/></svg>
                                         Autores
                                     </li>
                                 </a>
-                                <a href="#">
+                                <a onClick={() => navigateTo("/categorias")}>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 480H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H288c-10.1 0-19.6-4.7-25.6-12.8L243.2 57.6C231.1 41.5 212.1 32 192 32H64C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64z"/></svg>
                                         Categorias
@@ -69,7 +73,7 @@ export default function Header() {
                                         Favoritos
                                     </li>
                                 </a>
-                                <a href="#">
+                                <a onClick={() => navigateTo("/sobre")}>
                                     <li>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
                                         Sobre
@@ -96,34 +100,22 @@ export default function Header() {
                     {/* Navbar desktop  */}
                     <div className="navbar__desktop">
                         <ul>
-                            <a href="#">
+                            <a onClick={() => navigateTo("/livros")}>
                                 <li>
                                     Livros
                                 </li>
                             </a>
-                            <a href="#">
+                            <a onClick={() => navigateTo("/autores")}>
                                 <li>
                                     Autores
                                 </li>
                             </a>
                             <div className="categoryDropdown">
-                                <a href="#">
+                                <a onClick={() => navigateTo("/categorias")}>
                                     <li>
                                         Categorias
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/></svg>
                                     </li>
                                 </a>
-
-                                {/* Category Dropdown */}
-                                {/* <div className="categoryDropdown__container fadeFromTop">
-                                    <div>
-                                        <p>Nenhuma Categoria Adicionada</p>
-                                    </div>
-
-                                    <div>
-
-                                    </div>
-                                </div> */}
                             </div>
 
                             {isAdmin && (
@@ -156,7 +148,7 @@ export default function Header() {
                                 </div>
                             )}
 
-                            <a href="#">
+                            <a onClick={() => navigateTo("/sobre")}>
                                 <li>
                                     Sobre
                                 </li>
