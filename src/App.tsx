@@ -12,39 +12,29 @@ import Home from "./pages/home/home";
 import './assets/style/index.css';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<string>(window.location.pathname);
+  const [currentPage, setCurrentPage] = useState<string>("home"); 
+
   const [forceUpdate, setForceUpdate] = useState(0);
 
   useEffect(() => {
-    const handlePopState = () => {
-      setCurrentPage(window.location.pathname);
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
-
-  useEffect(() => {
     const handleStorageUpdate = () => setForceUpdate((prev) => prev + 1);
-
     window.addEventListener("localStorageUpdate", handleStorageUpdate);
     return () => window.removeEventListener("localStorageUpdate", handleStorageUpdate);
   }, []);
 
-  const navigateTo = (path: string) => {
-    window.history.pushState({}, "", path);
-    setCurrentPage(path);
+  const navigateTo = (page: string) => {
+    setCurrentPage(page);
   };
 
   const renderPage = () => {
     switch (currentPage) {
-      case "/livros":
+      case "livros":
         return <Books key={forceUpdate} />;
-      case "/autores":
+      case "autores":
         return <Authors key={forceUpdate} />;
-      case "/categorias":
+      case "categorias":
         return <Categories key={forceUpdate} />;
-      case "/sobre":
+      case "sobre":
         return <About key={forceUpdate} />;
       default:
         return <Home key={forceUpdate} />;
@@ -53,7 +43,7 @@ export default function App() {
 
   return (
     <>
-      <Header navigateTo={navigateTo} />
+      <Header navigateTo={navigateTo} /> 
       <div className="container">{renderPage()}</div>
       <Footer />
     </>

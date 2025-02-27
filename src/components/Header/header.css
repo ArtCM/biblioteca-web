@@ -15,6 +15,7 @@
 .navbar__logo{
     width: 70px;
     height: 70px;
+    cursor: pointer;
 }
 
 /* Mobile First*/
