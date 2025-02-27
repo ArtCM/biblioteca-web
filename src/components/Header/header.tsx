@@ -34,7 +34,7 @@ export default function Header({ navigateTo }: HeaderProps) {
                 <nav className="navbar">
 
                     <a href="/">
-                        <img className="navbar__logo" src="../../../public/assets/image/logo.webp" alt="Logo" title="Logo" />
+                        <img className="navbar__logo" src="/assets/image/logo.webp" alt="Logo" title="Logo" />
                     </a>
 
                     {/* Navbar mobile  */}

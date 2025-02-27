@@ -5,7 +5,7 @@ export default function Footer() {
         <>
             <footer className='footer'>
                 <div className="footer__logo">
-                    <img src="../../../public/assets/image/logo.webp" alt="Logo" title="Logo" />
+                    <img src="/assets/image/logo.webp" alt="Logo" title="Logo" />
                 </div>
                 
                 <div className='footer__sociais'>
