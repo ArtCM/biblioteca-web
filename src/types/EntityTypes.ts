@@ -1,4 +1,4 @@
-import { FieldValues, UseFormReset } from "react-hook-form"; // ✅ Removemos SubmitHandler
+import { FieldValues, UseFormReset } from "react-hook-form";
 
 export type EntityType = "book" | "author" | "category";
 

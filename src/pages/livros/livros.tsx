@@ -1,24 +1,20 @@
 import { useState, useEffect } from "react";
 import "./livros.css";
+import { Book } from "../../types/EntityTypes"; 
 
 export default function Books() {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState<Book[]>([]); 
 
   useEffect(() => {
-    const fetchBooks = () => {
-      setBooks(JSON.parse(localStorage.getItem("books") || "[]"));
-    };
-
-    fetchBooks();
-    window.addEventListener("localStorageUpdate", fetchBooks);
-    return () => window.removeEventListener("localStorageUpdate", fetchBooks);
+    const storedBooks = JSON.parse(localStorage.getItem("books") || "[]");
+    setBooks(storedBooks as Book[]);
   }, []);
 
   return (
     <main className="content-container">
       <h1>Livros</h1>
       {books.length > 0 ? (
-        <ul>
+        <ul className="list">
           {books.map((book, index) => (
             <li key={index}>{book.title} - {book.author}</li>
           ))}
