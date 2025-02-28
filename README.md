@@ -43,12 +43,17 @@ O projeto está utilizando localStorage como armazenamento, não utiliza framewo
 https://www.figma.com/design/XgNFTHAadHPGosz6j6HrS3/biblioteca-web?node-id=3-308&t=6DmnSu0EGBUXP7hk-1
 ~~~
 
-## [Clique aqui e veja a aplicação](https://biblioteca-web-eta.vercel.app)
+##
 
 <br>
 
-Instalação
----------
+# Deploy
+
+## [Clique aqui e veja a aplicação online](https://biblioteca-web-eta.vercel.app)
+
+<br>
+
+# Instalação
 
 Instale as dependências:
 

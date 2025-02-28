@@ -1,6 +1,5 @@
 .header{
     background-color: var(--secondary);
-    width: screen;
     position: fixed;
     width: 100%;
 }
