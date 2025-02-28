@@ -31,9 +31,6 @@ export default function Home() {
       {showTitle && 
         <div className="home-container__content">
           <h1>Bem-vindo à Biblioteca Online</h1>
-          <button onClick={() => navigateTo("livros")}>
-            Ver Livros Disponíveis
-          </button>
         </div>
       }
     </main>
