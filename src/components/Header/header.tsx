@@ -2,26 +2,23 @@
 
 import { useState } from "react";
 
-import './header.css'
 import MobAddButton from "../MobAddbutton/mobAddButton";
 import DeskAddButton from "../DeskAddButton/deskAddButton";
+import { useNavigation } from "../../hooks/useNavigation";
 
 import { useEntityModal } from "../../hooks/useEntityModal";
 
-interface HeaderProps {
-    navigateTo: (path: string) => void;
-}
+import './header.css'
 
-export default function Header({ navigateTo }: HeaderProps) {
-
-    // State que abre o menu mobile
+export default function Header() {
+    const { navigateTo } = useNavigation();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const bookModal = useEntityModal("book");
     const authorModal = useEntityModal("author");
     const categoryModal = useEntityModal("category");
 
-    const [isAdmin, setIsAdmin] = useState(false);
 
     const toggleAdmin = () => {
         setIsAdmin((prev) => !prev);

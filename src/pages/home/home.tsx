@@ -1,16 +1,41 @@
+import { useState, useEffect, useRef } from "react";
+import { useNavigation } from "../../hooks/useNavigation";
+
 import "./home.css";
 
 export default function Home() {
+  const [showTitle, setShowTitle] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const { navigateTo } = useNavigation();
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleVideoEnd = () => {
+      setShowTitle(true);
+    };
+
+    video.play().catch((error) => console.error("Erro ao reproduzir o vídeo:", error));
+    video.addEventListener("ended", handleVideoEnd);
+
+    return () => {
+      video.removeEventListener("ended", handleVideoEnd);
+    };
+  }, []);
+
   return (
-    <main className="content-container">
-      <h1>Home</h1>
-      <p>
-        Este projeto foi desenvolvido para gerenciar livros, autores e categorias. 
-        Utiliza React, TypeScript, Radix UI, React Hook Form e Local Storage para armazenar dados.
-      </p>
-      <p>
-        Criado para demonstrar boas práticas em desenvolvimento frontend, incluindo organização, reutilização de componentes e gerenciamento de estado.
-      </p>
+    <main className="home-container">
+      <video ref={videoRef} className="background-video" src="/assets/video/bg-video.mp4" autoPlay muted />
+
+      {showTitle && 
+        <div className="home-container__content">
+          <h1>Bem-vindo à Biblioteca Online</h1>
+          <button onClick={() => navigateTo("livros")}>
+            Ver Livros Disponíveis
+          </button>
+        </div>
+      }
     </main>
   );
 }

@@ -10,11 +10,12 @@ import About from "./pages/sobre/sobre";
 import Home from "./pages/home/home";
 
 import { LibraryProvider, useLibrary } from "./context/LibraryContext";
+import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 
 import "./assets/style/index.css";
 
 function AppContent() {
-  const [currentPage, setCurrentPage] = useState<string>("home");
+  const { currentPage } = useNavigation();
   const [forceUpdate, setForceUpdate] = useState(0);
 
   const { books, authors, categories } = useLibrary();
@@ -22,10 +23,6 @@ function AppContent() {
   useEffect(() => {
     setForceUpdate((prev) => prev + 1);
   }, [books, authors, categories]);
-
-  const navigateTo = (page: string) => {
-    setCurrentPage(page);
-  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -44,9 +41,9 @@ function AppContent() {
 
   return (
     <>
-      <Header navigateTo={navigateTo} />
+      <Header />
 
-      <div className="container">{renderPage()}</div>
+        <div className="container">{renderPage()}</div>
 
       <Footer />
     </>
@@ -56,7 +53,9 @@ function AppContent() {
 export default function App() {
   return (
     <LibraryProvider>
-      <AppContent />
+      <NavigationProvider>
+        <AppContent />
+      </NavigationProvider>
     </LibraryProvider>
   );
 }
