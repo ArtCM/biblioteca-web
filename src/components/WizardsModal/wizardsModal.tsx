@@ -37,11 +37,34 @@ export function WizardsModal({ isOpen, onClose, steps, onSubmit }: MultiStepModa
           <Dialog.Close className="closeBtn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
           </Dialog.Close>
-          <form> 
+          <form>
             {steps[currentStep].inputs.map((input) => (
               <div key={input.name} className="form-group">
                 <label htmlFor={input.name}>{input.label}</label>
-                <input id={input.name} type={input.type} {...register(input.name)} required />
+
+                {/* Checkbox */}
+                {input.type === "checkbox" ? (
+                  <div className="checkbox-group">
+                    <input id={input.name} type="checkbox" {...register(input.name)} />
+                    <label htmlFor={input.name}>Sim</label>
+                  </div>
+                ) : input.type === "radio" ? (
+                  <div className="radio-group">
+                    {["homem", "mulher", "outro"].map((option) => (
+                      <label key={option}>
+                        <input
+                          type="radio"
+                          value={option}
+                          {...register(input.name)}
+                        />
+                        {option.charAt(0).toUpperCase() + option.slice(1)}
+                      </label>
+                    ))}
+                  </div>
+                ) : (
+                  // Inputs normais
+                  <input id={input.name} type={input.type} {...register(input.name)} required />
+                )}
               </div>
             ))}
 
@@ -50,7 +73,7 @@ export function WizardsModal({ isOpen, onClose, steps, onSubmit }: MultiStepModa
               {currentStep < steps.length - 1 ? (
                 <button type="button" onClick={nextStep}>Próximo</button>
               ) : (
-                <button type="button" onClick={handleSubmit(handleFormSubmit)}>Finalizar</button> 
+                <button type="button" onClick={handleSubmit(handleFormSubmit)}>Finalizar</button>
               )}
             </div>
           </form>

@@ -1,12 +1,9 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigation } from "../../hooks/useNavigation";
-
 import "./home.css";
 
 export default function Home() {
   const [showTitle, setShowTitle] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { navigateTo } = useNavigation();
 
   useEffect(() => {
     const video = videoRef.current;
