@@ -13,6 +13,15 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const handleResize = () => {
+      setShowVideo(window.innerWidth > 900);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
     if (!showVideo || !videoRef.current) return;
 
     const video = videoRef.current;
