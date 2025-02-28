@@ -73,6 +73,7 @@ npm run dev
 <br>
 
 Nomenclatura de commits
+
 ---------
 - docs: apenas mudanças de documentação;
 - feat: uma nova funcionalidade;
