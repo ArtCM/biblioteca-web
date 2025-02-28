@@ -12,6 +12,8 @@ interface LibraryContextType {
   removeBook: (title: string) => void;
   addCategory: (category: Category) => void;
   addAuthor: (author: Author) => void;
+  removeAuthor: (name: string) => void;
+  removeCategory: (name: string) => void;
 }
 
 const LibraryContext = createContext<LibraryContextType | undefined>(undefined);
@@ -83,6 +85,20 @@ export function LibraryProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // Remove categoria somente se não existirem livros com ela
+  const removeCategory = (name: string) => {
+    if (books.some((book) => book.genre.toLowerCase() === name.toLowerCase())) {
+      alert("Esta categoria possui livros cadastrados. Remova os livros antes de excluir a categoria.");
+      return;
+    }
+
+    setCategories((prev) => {
+      const updatedCategories = prev.filter((category) => category.name.toLowerCase() !== name.toLowerCase());
+      localStorage.setItem("categories", JSON.stringify(updatedCategories));
+      return updatedCategories;
+    });
+  };
+
   // Adiciona Autor
   const addAuthor = (author: Author) => {
     if (authors.some((a) => a.name.toLowerCase() === author.name.toLowerCase())) {
@@ -99,8 +115,22 @@ export function LibraryProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // Remove Autor somente se não existirem livros com ele
+  const removeAuthor = (name: string) => {
+    if (books.some((book) => book.author.toLowerCase() === name.toLowerCase())) {
+      alert("Este autor possui livros cadastrados. Remova os livros antes de excluir o autor.");
+      return;
+    }
+
+    setAuthors((prev) => {
+      const updatedAuthors = prev.filter((author) => author.name.toLowerCase() !== name.toLowerCase());
+      localStorage.setItem("authors", JSON.stringify(updatedAuthors));
+      return updatedAuthors;
+    });
+  };
+
   return (
-    <LibraryContext.Provider value={{ books, authors, categories, addBook, removeBook, addCategory, addAuthor }}>
+    <LibraryContext.Provider value={{ books, authors, categories, addBook, removeBook, addCategory, addAuthor, removeAuthor, removeCategory }}>
       {children}
     </LibraryContext.Provider>
   );
