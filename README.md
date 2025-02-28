@@ -24,15 +24,17 @@ O projeto está utilizando localStorage como armazenamento, não utiliza framewo
 
 ### Tecnologias
 
-- React 19.0.0
 - Node 22.11.0
-- Vite
+- React 19.0.0
+- Typescript
 - HTML
 - CSS
 - Javascript
+- Git
+- Normalize.css v8.0.1
 - Radix
 - React Hook Form
-- Docker
+- React Context API 
 
 <br>
 
@@ -41,7 +43,7 @@ O projeto está utilizando localStorage como armazenamento, não utiliza framewo
 https://www.figma.com/design/XgNFTHAadHPGosz6j6HrS3/biblioteca-web?node-id=3-308&t=6DmnSu0EGBUXP7hk-1
 ~~~
 
-<!-- ## [Clique aqui e veja a aplicação](https://diario-de-notas.vercel.app) -->
+## [Clique aqui e veja a aplicação](https://biblioteca-web-eta.vercel.app)
 
 <br>
 
@@ -74,17 +76,4 @@ Nomenclatura de commits
 - refactor: mudança de código que não adiciona uma funcionalidade e também não corrigi um bug;
 - style: mudanças no código que não afetam seu significado (espaço em branco, formatação, ponto e vírgula, etc);
 - test: adicionar ou corrigir testes.
----------
-
-
-Tecnologias Utilizadas:
----------
-- Node 22.11.0
-- HTML
-- CSS
-- Javascript
-- React 19.0.0
-- Typescript
-- Git
-- Normalize.css v8.0.1
 ---------

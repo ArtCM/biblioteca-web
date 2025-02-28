@@ -6,13 +6,17 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       const item = localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.error("Erro ao acessar localStorage:", error);
+      console.error(`Error reading LocalStorage key "${key}":`, error);
       return initialValue;
     }
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(storedValue));
+    try {
+      localStorage.setItem(key, JSON.stringify(storedValue));
+    } catch (error) {
+      console.error(`Error setting LocalStorage key "${key}":`, error);
+    }
   }, [key, storedValue]);
 
   return [storedValue, setStoredValue] as const;

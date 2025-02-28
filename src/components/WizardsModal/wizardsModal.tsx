@@ -10,26 +10,14 @@ export function WizardsModal({ isOpen, onClose, steps, onSubmit }: MultiStepModa
   const { register, handleSubmit, reset, getValues } = useForm();
 
   useEffect(() => {
-    if (!isOpen) {
-      setCurrentStep(0);
-    }
+    if (!isOpen) setCurrentStep(0);
   }, [isOpen]);
 
-  const nextStep = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
+  const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
+  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
 
   const handleFormSubmit = () => {
-    const formData = getValues(); 
-    onSubmit(formData, reset);
+    onSubmit(getValues(), reset);
     setCurrentStep(0);
   };
 
@@ -46,11 +34,9 @@ export function WizardsModal({ isOpen, onClose, steps, onSubmit }: MultiStepModa
           )}
 
           <Dialog.Title>{steps[currentStep].title}</Dialog.Title>
-          
           <Dialog.Close className="closeBtn">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
           </Dialog.Close>
-
           <form> 
             {steps[currentStep].inputs.map((input) => (
               <div key={input.name} className="form-group">

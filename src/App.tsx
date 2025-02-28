@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Footer from "./components/Footer/footer";
 import Header from "./components/Header/header";
@@ -9,18 +9,12 @@ import Categories from "./pages/categorias/categorias";
 import About from "./pages/sobre/sobre";
 import Home from "./pages/home/home";
 
-import './assets/style/index.css';
+import { LibraryProvider } from "./context/LibraryContext";
+
+import "./assets/style/index.css";
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<string>("home"); 
-
-  const [forceUpdate, setForceUpdate] = useState(0);
-
-  useEffect(() => {
-    const handleStorageUpdate = () => setForceUpdate((prev) => prev + 1);
-    window.addEventListener("localStorageUpdate", handleStorageUpdate);
-    return () => window.removeEventListener("localStorageUpdate", handleStorageUpdate);
-  }, []);
+  const [currentPage, setCurrentPage] = useState<string>("home");
 
   const navigateTo = (page: string) => {
     setCurrentPage(page);
@@ -29,23 +23,25 @@ export default function App() {
   const renderPage = () => {
     switch (currentPage) {
       case "livros":
-        return <Books key={forceUpdate} />;
+        return <Books />;
       case "autores":
-        return <Authors key={forceUpdate} />;
+        return <Authors />;
       case "categorias":
-        return <Categories key={forceUpdate} />;
+        return <Categories />;
       case "sobre":
-        return <About key={forceUpdate} />;
+        return <About />;
       default:
-        return <Home key={forceUpdate} />;
+        return <Home />;
     }
   };
 
   return (
-    <>
-      <Header navigateTo={navigateTo} /> 
+    <LibraryProvider>
+      <Header navigateTo={navigateTo} />
+
       <div className="container">{renderPage()}</div>
+
       <Footer />
-    </>
+    </LibraryProvider>
   );
 }
