@@ -3,6 +3,7 @@ import "./autores.css";
 import { useLibrary } from "../../context/LibraryContext";
 import { DeleteModal } from "../../components/DeleteModal/deleteModal";
 import * as Dialog from "@radix-ui/react-dialog";
+import { Author } from "../../types/Author"
 
 export default function Authors() {
   const { authors, removeAuthor } = useLibrary();
@@ -24,7 +25,7 @@ export default function Authors() {
             </tr>
           </thead>
           <tbody>
-            {authors.map((author, index) => (
+            {authors.map((author: Author, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{author.name}</td>
